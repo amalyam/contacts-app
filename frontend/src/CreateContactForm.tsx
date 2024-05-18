@@ -42,30 +42,42 @@ export default function CreateContactForm({}) {
 
   return (
     <form onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="firstName">First Name:</label>
+      <div className="flex flex-col items-start m-3">
+        <label htmlFor="firstName">First name</label>
         <input
+          className="border border-cyan-800 rounded-lg"
           type="text"
           id="firstName"
           value={contactData.firstName}
           onChange={handleChange}
         />
       </div>
-      <label htmlFor="lastName">Last Name:</label>
-      <input
-        type="text"
-        id="lastName"
-        value={contactData.lastName}
-        onChange={handleChange}
-      />
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        value={contactData.email}
-        onChange={handleChange}
-      />
-      <button type="submit">Create Contact</button>
+      <div className="flex flex-col items-start m-3">
+        <label htmlFor="lastName">Last name</label>
+        <input
+          className="border border-cyan-800 rounded-lg w-[75%]"
+          type="text"
+          id="lastName"
+          value={contactData.lastName}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="flex flex-col items-start m-3">
+        <label htmlFor="email">Email</label>
+        <input
+          className="border border-cyan-800 rounded-lg"
+          type="email"
+          id="email"
+          value={contactData.email}
+          onChange={handleChange}
+        />
+      </div>
+      <button
+        className="block w-[75%] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
+        type="submit"
+      >
+        Create Contact
+      </button>
     </form>
   );
 }
