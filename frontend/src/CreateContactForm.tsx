@@ -15,7 +15,7 @@ export default function CreateContactForm({}) {
       contactData,
     };
 
-    const url = process.env.REACT_APP_API_URL + "/create_contact";
+    const url = "http://127.0.0.1:5000/create_contact";
 
     const options = {
       method: "POST",
