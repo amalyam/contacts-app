@@ -76,7 +76,7 @@ export default function CreateContactForm({}) {
         className="block w-[75%] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
         type="submit"
       >
-        Create Contact
+        {updating ? "Update" : "Create"}
       </button>
     </form>
   );
