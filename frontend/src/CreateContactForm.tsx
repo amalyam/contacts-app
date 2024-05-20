@@ -41,39 +41,41 @@ export default function CreateContactForm({}) {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="flex flex-col items-start m-3">
-        <label htmlFor="firstName">First name</label>
-        <input
-          className="border border-cyan-800 rounded-lg"
-          type="text"
-          id="firstName"
-          value={contactData.firstName}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="flex flex-col items-start m-3">
-        <label htmlFor="lastName">Last name</label>
-        <input
-          className="border border-cyan-800 rounded-lg w-[75%]"
-          type="text"
-          id="lastName"
-          value={contactData.lastName}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="flex flex-col items-start m-3">
-        <label htmlFor="email">Email</label>
-        <input
-          className="border border-cyan-800 rounded-lg"
-          type="email"
-          id="email"
-          value={contactData.email}
-          onChange={handleChange}
-        />
+    <form className="pr-8" onSubmit={onSubmit}>
+      <div className="ml-1 ">
+        <div className="flex flex-col items-start m-3">
+          <label htmlFor="firstName">First name</label>
+          <input
+            className="border border-cyan-800 rounded-lg w-full pl-2"
+            type="text"
+            id="firstName"
+            value={contactData.firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex flex-col items-start m-3">
+          <label htmlFor="lastName">Last name</label>
+          <input
+            className="border border-cyan-800 rounded-lg w-full pl-2"
+            type="text"
+            id="lastName"
+            value={contactData.lastName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex flex-col items-start m-3">
+          <label htmlFor="email">Email</label>
+          <input
+            className="border border-cyan-800 rounded-lg w-full pl-2"
+            type="email"
+            id="email"
+            value={contactData.email}
+            onChange={handleChange}
+          />
+        </div>
       </div>
       <button
-        className="block w-[75%] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
+        className="block w-full bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
         type="submit"
       >
         {updating ? "Update" : "Create"}
