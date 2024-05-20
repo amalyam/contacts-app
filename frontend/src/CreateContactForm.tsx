@@ -8,6 +8,17 @@ export default function CreateContactForm({}) {
     email: "",
   });
 
+  useEffect(() => {
+    if (existingContact) setContactData(existingContact);
+  }, [existingContact]);
+
+  let updating = false;
+  let url = "";
+
+  if (existingContact) {
+    updating = Object.entries(existingContact).length !== 0;
+  }
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
