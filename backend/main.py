@@ -27,14 +27,14 @@ def create_contact():
     except Exception as e:
         return jsonify({"message": str(e)}), 400
     
-    return jsonify({"message": "User created!"}), 201
+    return jsonify({"message": "Contact created!"}), 201
 
-@app.route("/update_contact/<int:user_id>", methods=["PATCH"])
-def update_contact(user_id):
-    contact = Contact.query.get(user_id)
+@app.route("/update_contact/<int:contact_id>", methods=["PATCH"])
+def update_contact(contact_id):
+    contact = Contact.query.get(contact_id)
     
     if not contact:
-        return jsonify({"message": "User not found"}), 404
+        return jsonify({"message": "Contact not found"}), 404
     
     data = request.json
     contact.first_name = data.get("firstName", contact.first_name)
@@ -45,17 +45,17 @@ def update_contact(user_id):
     
     return jsonify({"message": "User updated."}), 200
 
-@app.route("/delete_contact/<int:user_id>", methods=["DELETE"])
-def delete_contact(user_id):
-    contact = Contact.query.get(user_id)
+@app.route("/delete_contact/<int:contact_id>", methods=["DELETE"])
+def delete_contact(contact_id):
+    contact = Contact.query.get(contact_id)
     
     if not contact:
-        return jsonify({"message": "User not found"}), 404
+        return jsonify({"message": "Contact not found"}), 404
     
     db.session.delete(contact)
     db.session.commit()
     
-    return jsonify({"message: User deleted."}), 200
+    return jsonify({"message": "Contact deleted."}), 200
     
 
 if __name__ == "__main__":
