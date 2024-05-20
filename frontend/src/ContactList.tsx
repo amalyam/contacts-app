@@ -1,7 +1,11 @@
 import React from "react";
 import { Contact, ContactListProps } from "./types/Contact";
 
-export default function ContactList({ contacts }: ContactListProps) {
+export default function ContactList({
+  contacts,
+  updateContact,
+  updateCallback,
+}: ContactListProps) {
   return (
     <div className="m-2 p-4">
       <h2 className="text-center my-4 font-semibold antialiased">Contacts</h2>
@@ -23,7 +27,10 @@ export default function ContactList({ contacts }: ContactListProps) {
                   <td className="text-center">{contact.lastName}</td>
                   <td className="text-center">{contact.email}</td>
                   <td className="text-center">
-                    <button className="bg-emerald-500 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-slate-950">
+                    <button
+                      className="bg-emerald-500 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-slate-950"
+                      onClick={() => updateContact(contact)}
+                    >
                       Update
                     </button>
                     <button className="bg-red-700 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-white">
