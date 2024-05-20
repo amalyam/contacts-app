@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Contact } from "./types/Contact";
+import React, { useState, useEffect } from "react";
+import { Contact, CreateContactFormProps } from "./types/Contact";
 
-export default function CreateContactForm({}) {
+export default function CreateContactForm({
+  existingContact,
+  updateCallback,
+}: CreateContactFormProps) {
   const [contactData, setContactData] = useState({
     firstName: "",
     lastName: "",
@@ -22,25 +25,25 @@ export default function CreateContactForm({}) {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const data = {
-      contactData,
-    };
-
-    const url = "http://127.0.0.1:5000/create_contact";
+    if (existingContact && updating) {
+      url =
+        "http://127.0.0.1:5000/" +
+        (updating ? `update_contact/${existingContact.id}` : "create_contact");
+    }
 
     const options = {
-      method: "POST",
+      method: updating ? "PATCH" : "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(contactData),
     };
     const response = await fetch(url, options);
     if (response.status !== 201 && response.status !== 200) {
       const data = await response.json();
       alert(data.message);
     } else {
-      // successful
+      updateCallback();
     }
   };
 
