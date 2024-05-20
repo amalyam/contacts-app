@@ -6,6 +6,27 @@ export default function ContactList({
   updateContact,
   updateCallback,
 }: ContactListProps) {
+  const onDelete = async (id: number) => {
+    try {
+      const options = {
+        method: "DELETE",
+      };
+      const response = await fetch(
+        `http://127.0.0.1:5000/delete_contact/${id}`,
+        options
+      );
+
+      if (response.ok) {
+        updateCallback();
+      } else {
+        const data = await response.json();
+        console.error("Failed to delete", response.status, data);
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
+
   return (
     <div className="m-2 p-4">
       <h2 className="text-center my-4 font-semibold antialiased">Contacts</h2>
@@ -33,7 +54,10 @@ export default function ContactList({
                     >
                       Update
                     </button>
-                    <button className="bg-red-700 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-white">
+                    <button
+                      className="bg-red-700 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-white"
+                      onClick={() => onDelete(contact.id)}
+                    >
                       Delete
                     </button>
                   </td>
