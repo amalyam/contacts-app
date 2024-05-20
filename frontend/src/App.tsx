@@ -52,7 +52,7 @@ function App() {
         updateCallback={onUpdate}
       />
       <button
-        className="block w-[75%] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
+        className="block w-[250px] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
         onClick={openCreateModal}
       >
         Add Contact
