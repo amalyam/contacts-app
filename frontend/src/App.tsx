@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import ContactList from "./ContactList";
 import CreateContactForm from "./CreateContactForm";
+import { Contact } from "./types/Contact";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentContact, setCurrentContact] = useState<Contact | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     fetchContacts();
@@ -19,20 +23,39 @@ function App() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setCurrentContact(undefined);
   };
 
   const openCreateModal = () => {
-    if (!isModalOpen) setIsModalOpen(true);
+    if (!isModalOpen) {
+      setIsModalOpen(true);
+      setCurrentContact(undefined);
+    }
+  };
+
+  const openEditModal = (contact: Contact) => {
+    if (isModalOpen) return;
+    setCurrentContact(contact);
+    setIsModalOpen(true);
+  };
+
+  const onUpdate = () => {
+    closeModal();
+    fetchContacts();
   };
 
   return (
-    <div>
-      <ContactList contacts={contacts} />
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <ContactList
+        contacts={contacts}
+        updateContact={openEditModal}
+        updateCallback={onUpdate}
+      />
       <button
         className="block w-[75%] bg-cyan-700 m-4 px-4 py-2 rounded-lg font-semibold shadow-lg text-white antialiased"
         onClick={openCreateModal}
       >
-        Create New Contact
+        Add Contact
       </button>
       {isModalOpen && (
         <div className="flex items-center justify-center fixed z-10 inset-0 overflow-auto bg-black bg-opacity-40 w-full h-full">
@@ -43,7 +66,10 @@ function App() {
             >
               &times;
             </span>
-            <CreateContactForm />
+            <CreateContactForm
+              existingContact={currentContact}
+              updateCallback={onUpdate}
+            />
           </div>
         </div>
       )}
