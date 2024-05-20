@@ -8,7 +8,7 @@ export interface Contact {
 export interface ContactListProps {
   contacts: Contact[];
   updateContact: (contact: Contact) => void;
-  updateCallback: (contact: Contact) => void;
+  updateCallback: (contact?: Contact) => void;
 }
 
 export interface CreateContactFormProps {
