@@ -46,10 +46,10 @@ export default function ContactList({
             {contacts.map((contact) => {
               return (
                 <tr key={contact.id}>
-                  <td className="text-center">{contact.firstName}</td>
-                  <td className="text-center">{contact.lastName}</td>
-                  <td className="text-center">{contact.email}</td>
-                  <td className="text-center">
+                  <td className="p-4">{contact.firstName}</td>
+                  <td className="p-4">{contact.lastName}</td>
+                  <td className="p-4">{contact.email}</td>
+                  <td className="p-4">
                     <button
                       className="bg-emerald-500 rounded-lg m-2 px-4 py-2 font-semibold shadow-md text-slate-950"
                       onClick={() => updateContact(contact)}
