@@ -29,7 +29,9 @@ export default function ContactList({
 
   return (
     <div className="m-2 p-4">
-      <h2 className="text-center my-4 font-semibold antialiased">Contacts</h2>
+      <h2 className="text-center mb-10 text-xl font-semibold antialiased">
+        Contacts
+      </h2>
       {contacts && contacts.length > 0 ? (
         <table className="min-w-full table-auto">
           <thead className="justify-between">
